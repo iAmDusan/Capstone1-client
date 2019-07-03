@@ -6,7 +6,8 @@ class App extends Component {
     error: null,
   };
 
-  onClick = () => {
+  onClick = e => {
+    e.preventDefault()
     const serverURL = "http://localhost:8000/api/";
     if (this.refs.place.value.length < 3) {
       alert("Enter a valid location. Must be at least 3 characters.")
@@ -32,9 +33,11 @@ class App extends Component {
     if(!this.state.data) {
       return (
         <div className='query'>
+          <form onSubmit={this.onClick}>
           <input type='text' ref='place' placeholder='Enter a Place' /> <br />
           <br />
-          <button onClick={this.onClick}> Search </button>
+          <button type="submit"> Search </button>
+          </form>
         </div>
       );
     } else {
@@ -43,6 +46,7 @@ class App extends Component {
       console.log("Fetched API time:", unixTime)
       console.log("Formatted API time:", formatted)
       console.log("Full Unix Time to ms:", this.state.data.currently.time*1000)
+
       return (
         <div className='result'>
           <h4>Place: {this.state.data.features[0].place_name}</h4>
@@ -54,8 +58,8 @@ class App extends Component {
           <h4>Current Temperature: {this.state.data.currently.temperature} &deg;Fahrenheit</h4>
           <h5>Unix Timestamp: {this.state.data.currently.time}</h5>
           <h5>Formatted Timestamp {formatted} </h5>
-          <h4>FULL DATASTREAM:<br /></h4>
-          <p>{JSON.stringify(this.state.data)}</p>
+          <h2>FULL DATASTREAM:<br /></h2>
+          <p> data can go here</p>
         </div>
       );
     }
