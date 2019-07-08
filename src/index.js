@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './components/App';
+import Search from './components/App/App';
 import './index.css'
+
+
 function App() {
   return (
     <div className="App">
