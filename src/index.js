@@ -1,21 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './components/App/App';
+import { BrowserRouter } from 'react-router-dom'
+import App from './components/App/App'
 import './index.css'
 
 
-function App() {
-  return (
-    <div className="App">
-      <h2>Darksky and Mapbox(geocoding) API test</h2>
-      <hr />
-      <Search />
-    </div>
-  )
-}
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+<BrowserRouter> 
+  <App />
+</BrowserRouter>,
+ document.getElementById('root'));
 
 
 
