@@ -3,6 +3,7 @@ import ResultsContext from '../../contexts/ResultsContext';
 import ResultsArea from '../../components/ResultsArea/ResultsArea';
 
 export default class ResultsPage extends Component {
+  
   static contextType = ResultsContext;
 
   componentWillUnmount() {
@@ -10,10 +11,10 @@ export default class ResultsPage extends Component {
   }
 
   render() {
-    if (this.context.queryResults !== null) {
-      return <ResultsArea />;
-    } else {
-      return null;
-    }
+    return (
+      <div>
+        <ResultsArea />
+      </div>
+    );
   }
 }
