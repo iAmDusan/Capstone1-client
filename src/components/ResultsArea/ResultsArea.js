@@ -33,7 +33,6 @@ export default class ResultsArea extends Component {
   }
 
   render() {
-    console.log(this.context.queryResults);
     if (this.context.queryResults !== null) {
       return this.renderResults();
     } else {

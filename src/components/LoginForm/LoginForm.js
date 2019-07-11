@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 import { Button, Input } from '../Utils/Utils';
+import ResultsContext from '../../contexts/ResultsContext'
 
 
 
 export default class LoginForm extends Component {
-  static defaultProps = {
-    onLoginSuccess: () => {}
-  }
+  static contextType = ResultsContext
 
   state = { error: null }
 
   handleSubmitJwtAuth = ev => {
     ev.preventDefault()
-    this.setState({ error: null })
+    this.context.clearError({ error: null })
     const { user_name, password } = ev.target
  
     AuthApiService.postLogin({
@@ -25,12 +24,21 @@ export default class LoginForm extends Component {
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
-        this.props.onLoginSuccess()
+        this.handleLoginSuccess()
+        
+        this.context.setLogin()
       })
       .catch(res => {
-        this.setState({ error: res.error })
+        this.context.setError({ error: res.error })
       })
   }
+
+  handleLoginSuccess = () => {
+    const { location, history } = this.props
+    const destination = (location.state || {}).from || '/'
+    history.push(destination)
+  }
+  
 
   render() {
     const { error } = this.state

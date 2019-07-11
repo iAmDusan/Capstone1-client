@@ -5,8 +5,8 @@ import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 
 import ResultsPage from '../../routes/ResultsPage/ResultsPage';
-import FavoritesListPage from '../../routes/FavoritesListPage/FavoritesListPage';
-import LoginPage from '../../routes/LoginPage/LoginPage';
+import UserFavoriteList from '../../components/UserFavoriteList/UserFavoriteList'
+import LoginForm from '../../components/LoginForm/LoginForm';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 
 import QueryArea from '../QueryArea/QueryArea';
@@ -32,9 +32,9 @@ class App extends Component {
           )}
           <Switch>
             <Route exact path={'/'} component={ResultsPage} />
-            <PublicOnlyRoute path={'/login'} component={LoginPage} />
+            <PublicOnlyRoute path={'/login'} component={LoginForm} />
             <PublicOnlyRoute path={'/register'} component={RegistrationPage} />
-            <PrivateRoute path={'/favorites'} component={FavoritesListPage} />
+            <PrivateRoute path={'/favorites'} component={UserFavoriteList} />
           </Switch>
         </main>
       </div>

@@ -5,6 +5,10 @@ const ResultsContext = React.createContext({
   queryResults: null,
   error: null,
   user: null,
+  isLoggedIn: false,
+  userFavorites: [],
+  setLogin: () => {},
+  setLogout: () => {},
   setUser: () => {},
   clearUser: () => {},
   setError: () => {},
@@ -22,8 +26,16 @@ export class ResultsProvider extends Component {
     queryResults: null,
     error: null,
     user: null,
+    isLoggedIn: false,
+    userFavorites: [],
   };
 
+  setLogin = () => { 
+    this.setState({ isLoggedIn: true})
+  }
+  setLogout= () => { 
+    this.setState({ isLoggedIn: false})
+  }
   setUser = user => {
     this.setState({ user })
   }
@@ -50,12 +62,17 @@ export class ResultsProvider extends Component {
       queryResults: this.state.queryResults,
       error: this.state.error,
       user: this.state.user,
+      isLoggedIn: this.state.isLoggedIn,
+      userFavorites: this.state.userFavorites,
+      setLogin: this.setLogin,
+      setLogout: this.setLogout,
       setUser: this.setUser,
       clearUser: this.clearUser,
       setError: this.setError,
       clearError: this.clearError,
       setQueryResults: this.setQueryResults,
       clearQueryResults: this.clearQueryResults,
+
     }
     return (
       <ResultsContext.Provider value ={value}>

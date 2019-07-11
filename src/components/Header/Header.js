@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
+import ResultsContext from '../../contexts/ResultsContext'
+import { withRouter } from 'react-router-dom';
 
-export default class Header extends Component {
+class Header extends Component {
+
+  static contextType = ResultsContext
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
+
   };
 
   renderLogoutLink() {
     return (
       <div className="Header__logged-in">
-        <Link onClick={this.handleLogoutClick} to="/">
-          Logout
-        </Link>
+  
+      <div className="logout-button" style={{textDecoration: 'underline', color: 'blue', cursor: 'pointer'}} onClick={ () => {
+        this.context.setLogout();
+        this.handleLogoutClick()
+        this.props.history.push("/")
+      } }>
+        Logout
+      </div>
+
       </div>
     );
   }
@@ -36,6 +48,7 @@ export default class Header extends Component {
           <span className="Header__tagline--wide">
             Darksky and Mapbox API development server.
           </span>
+          
           {TokenService.hasAuthToken()
             ? this.renderLogoutLink()
             : this.renderLoginLink()}
@@ -44,3 +57,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default withRouter(Header)
