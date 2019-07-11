@@ -10,18 +10,22 @@ import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
 
 import QueryArea from '../QueryArea/QueryArea';
-import ResultsArea from '../ResultsArea/ResultsArea'
+import ResultsContext from '../../contexts/ResultsContext'
+
 
 class App extends Component {
   state = {
     data: null,
     error: null,
+    user: null,
   };
 
   render() {
     return (
-      <div className='App'>
-        <header className='App__header'>
+
+    <div className='App'>
+  
+      <header className='App__header'>
           <Header />
           <br/>
           <QueryArea />
@@ -33,19 +37,19 @@ class App extends Component {
               exact
               path={'/'}
               component={ResultsPage}
-            />
+              />
             <PublicOnlyRoute
               path={'/login'}
               component={LoginPage}
-            />
+              />
             <PublicOnlyRoute
               path={'/register'}
               component={RegistrationPage}
-            />
+              />
             <PrivateRoute
               path={'/favorites'}
               component={FavoritesListPage}
-            />
+              />
           </Switch>
         </main>
       </div>
