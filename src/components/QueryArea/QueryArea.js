@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ResultsContext from '../../contexts/ResultsContext'
+import config from '../../config';
 
 export default class QueryArea extends Component {
 
@@ -7,10 +8,7 @@ export default class QueryArea extends Component {
 
   onClick = e => {
     e.preventDefault();
-    const serverURL = 'http://localhost:8000/api/';
-    if (this.refs.place.value.length < 3) {
-      alert('Enter a valid location. Must be at least 3 characters.');
-    } else {
+    const serverURL = `${config.API_ENDPOINT}/`;
       fetch(`${serverURL}${this.refs.place.value}`)
         .then(res => res.json())
         .then(res => {
@@ -20,13 +18,11 @@ export default class QueryArea extends Component {
         .then( () => {
           console.log(this.context)
         }
-
         )
         .catch(error => {
           console.log('Something went wrong', error);
           this.context.setError(error)
         });
-    }
   };
 
   render() {
