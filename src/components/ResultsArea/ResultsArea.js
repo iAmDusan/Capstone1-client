@@ -15,7 +15,7 @@ export default class ResultsArea extends Component {
     console.log('Full Unix Time to ms:', queryResults.currently.time * 1000);
 
     return (
-      <div>
+      <div className="results">
         <h2>Results for {query} </h2>
         <p>{queryResults.features[0].place_name}</p>
         <h4>Current Precipitation: {queryResults.currently.summary}</h4>

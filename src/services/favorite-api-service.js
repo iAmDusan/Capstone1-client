@@ -2,9 +2,10 @@ import TokenService from './token-service'
 import config from '../config'
 
 const FavoriteApiService = {
-  getFavorites() {
+  getFavoritesList() {
     return fetch(`${config.API_ENDPOINT}/favorites`, {
       headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
     })
       .then(res =>
@@ -13,8 +14,8 @@ const FavoriteApiService = {
           : res.json()
       )
   },
-  getFavorite(favoriteId) {
-    return fetch(`${config.API_ENDPOINT}/favorites/${favoriteId}`, {
+  getFavorite(content) {
+    return fetch(`${config.API_ENDPOINT}/weather/${content}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
@@ -25,19 +26,7 @@ const FavoriteApiService = {
           : res.json()
       )
   },
-  getFavoriteReviews(favoriteId) {
-    return fetch(`${config.API_ENDPOINT}/favorites/${favoriteId}/reviews`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
-  },
-  postReview(favoriteId, text, rating) {
+  postFavorite(favoriteId, title, content) {
     return fetch(`${config.API_ENDPOINT}/reviews`, {
       method: 'POST',
       headers: {
@@ -45,9 +34,9 @@ const FavoriteApiService = {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
-        favorite_id: favoriteId,
-        rating,
-        text,
+        id: favoriteId,
+        title: title,
+        content: content,
       }),
     })
       .then(res =>

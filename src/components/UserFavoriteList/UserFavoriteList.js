@@ -4,7 +4,7 @@ import ResultsContext from '../../contexts/ResultsContext';
 class UserFavoriteList extends Component {
   static contextType = ResultsContext;
 
-  getFavorites() {
+  getFavoritesList() {
     const { user, UserFavoriteList } = this.context;
 
     return (

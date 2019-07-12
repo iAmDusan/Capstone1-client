@@ -8,7 +8,7 @@ export default class QueryArea extends Component {
 
   onClick = e => {
     e.preventDefault();
-    const serverURL = `${config.API_ENDPOINT}/`;
+    const serverURL = `${config.WEATHER_ENDPOINT}/`;
       fetch(`${serverURL}${this.refs.place.value}`)
         .then(res => res.json())
         .then(res => {
