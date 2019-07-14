@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import ResultsContext from '../../contexts/ResultsContext'
 import { withRouter } from 'react-router-dom';
-
+import { Hyph } from '../../components/Utils/Utils'
+import './Header.css'
 class Header extends Component {
 
   static contextType = ResultsContext
@@ -33,6 +34,7 @@ class Header extends Component {
     return (
       <div className="Header__not-logged-in">
         <Link to="/login">Log in</Link>
+          <Hyph />
         <Link to="/register">Register</Link>
       </div>
     );

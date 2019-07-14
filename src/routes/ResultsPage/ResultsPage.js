@@ -12,7 +12,7 @@ export default class ResultsPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="results">
         <ResultsArea />
       </div>
     );

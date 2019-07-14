@@ -4,12 +4,14 @@ import Header from '../Header/Header';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 
-import ResultsPage from '../../routes/ResultsPage/ResultsPage';
 import UserFavoriteList from '../../components/UserFavoriteList/UserFavoriteList'
 import LoginForm from '../../components/LoginForm/LoginForm';
+
+import ResultsPage from '../../routes/ResultsPage/ResultsPage';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 
 import QueryArea from '../QueryArea/QueryArea';
+import './App.css'
 
 class App extends Component {
   state = {
