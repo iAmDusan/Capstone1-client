@@ -26,15 +26,14 @@ const FavoriteApiService = {
           : res.json()
       )
   },
-  postFavorite(favoriteId, title, content) {
-    return fetch(`${config.API_ENDPOINT}/reviews`, {
+  postFavorite(title, content) {
+    return fetch(`${config.API_ENDPOINT}/favorites`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
-        id: favoriteId,
         title: title,
         content: content,
       }),

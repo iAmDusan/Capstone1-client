@@ -14,6 +14,7 @@ export default class QueryArea extends Component {
         .then(res => {
           console.log(res);
           this.context.setQueryResults(res)
+          this.context.setQuery(this.refs.place.value)
         })
         .then( () => {
           console.log(this.context)

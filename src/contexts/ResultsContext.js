@@ -7,6 +7,7 @@ const ResultsContext = React.createContext({
   user: null,
   isLoggedIn: false,
   userFavorites: [],
+  setQuery: () => {},
   setLogin: () => {},
   setLogout: () => {},
   setUser: () => {},
@@ -30,6 +31,9 @@ export class ResultsProvider extends Component {
     userFavorites: [],
   };
 
+  setQuery = query => {
+    this.setState({ query })
+  }
   setLogin = () => { 
     this.setState({ isLoggedIn: true})
   }
@@ -70,6 +74,7 @@ export class ResultsProvider extends Component {
       clearUser: this.clearUser,
       setError: this.setError,
       clearError: this.clearError,
+      setQuery: this.setQuery,
       setQueryResults: this.setQueryResults,
       clearQueryResults: this.clearQueryResults,
 

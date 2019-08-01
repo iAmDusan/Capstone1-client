@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import ResultsContext from '../../contexts/ResultsContext';
+import FavoriteApiService from '../../services/favorite-api-service'
 
 import './ResultsArea.css';
 
 export default class ResultsArea extends Component {
   static contextType = ResultsContext;
 
+  addFavorite(title, content) {
+    console.log(title, content)
+    FavoriteApiService.postFavorite(title, content)
+    
+  }
   renderResults() {
+
     const { query, queryResults } = this.context;
+    console.log(query, queryResults)
+    
     const unixTime = new Date(queryResults.currently.time * 1000);
     const formatted = unixTime.toISOString();
     console.log('Fetched API time:', unixTime);
@@ -28,6 +37,7 @@ export default class ResultsArea extends Component {
         </h4>
         <h5>Unix Timestamp: {queryResults.currently.time}</h5>
         <h5>Formatted Timestamp {formatted} </h5>
+        <button type="button" onClick={ () => this.addFavorite(queryResults.features[0].place_name, query )} >Add Favorite </button>
       </div>
     );
   }
